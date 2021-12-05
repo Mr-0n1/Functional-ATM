@@ -18,12 +18,14 @@ cash.push(new Bills(5, 200)); //1000
 
 
 //checking total money func
-var total_ATMoney = 0;
+var total_ATMoney;
 money_display =  document.getElementById("Tmoney_display");
 
 function check_money(){
+    money_display.innerHTML = "Total money: ";
+    total_ATMoney = 0;
     for(var bill of cash){
-        total_ATMoney = total_ATMoney + (bill.value * bill.amount);
+        total_ATMoney += (bill.value * bill.amount);
     }
 
     money_display.innerHTML += total_ATMoney;
@@ -44,19 +46,17 @@ var count_movs = 1;
 
 function read_money(){
     var input = document.getElementById("quantity");
-    money = parseInt(input.value);
-    return money;
+    return parseInt(input.value);
 }
-
-money = read_money();
 console.log(money);
 
 //array to push the bills of the given amount of money
-var delivered = [];
+var delivered;
 
 function give_money(){
+    delivered = [];
+    money = read_money();
     console.log(money);
-    //result.innerHTML = "";
     
     for(var bill of cash){
         if(money > 0){
